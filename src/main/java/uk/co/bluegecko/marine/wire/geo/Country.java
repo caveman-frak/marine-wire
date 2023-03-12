@@ -1,21 +1,25 @@
 package uk.co.bluegecko.marine.wire.geo;
 
-
 import lombok.Builder;
 import lombok.NonNull;
 import lombok.Value;
-
-import java.beans.JavaBean;
+import lombok.extern.jackson.Jacksonized;
 
 @Value
 @Builder
-@JavaBean
-public class Continent {
+@Jacksonized
+public class Country {
+
+	@NonNull
+	Continent continent;
 
 	@NonNull
 	String code;
 
 	@NonNull
 	String name;
+
+	@NonNull
+	String nativeName;
 
 }

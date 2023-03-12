@@ -1,6 +1,5 @@
 plugins {
-    id("marine.java-conventions")
-    id("java")
+    id("marine.library-conventions")
     id("io.freefair.lombok") version "8.0.0-rc2"
     id("io.spring.dependency-management") version "1.1.0"
 }
@@ -11,7 +10,5 @@ repositories {
 
 dependencies {
     implementation(project(":shared"))
-//    testImplementation("org.junit.jupiter:junit-jupiter")
-//    testImplementation("org.assertj:assertj-core")
-//    testImplementation("org.mockito:mockito-core")
+    implementation("org.locationtech.spatial4j:spatial4j:0.8")
 }

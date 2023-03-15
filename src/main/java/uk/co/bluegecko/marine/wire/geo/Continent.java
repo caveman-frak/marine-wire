@@ -1,15 +1,17 @@
 package uk.co.bluegecko.marine.wire.geo;
 
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import lombok.Builder;
 import lombok.NonNull;
 import lombok.Value;
-
-import java.beans.JavaBean;
+import lombok.extern.jackson.Jacksonized;
 
 @Value
 @Builder
-@JavaBean
+@Jacksonized
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Continent {
 
 	@NonNull

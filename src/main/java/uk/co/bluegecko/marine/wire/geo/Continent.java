@@ -9,7 +9,7 @@ import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
 @Value
-@Builder
+@Builder(toBuilder = true)
 @Jacksonized
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Continent {

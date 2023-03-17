@@ -8,16 +8,16 @@ import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
 @Value
-@Builder
+@Builder(toBuilder = true)
 @Jacksonized
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Country {
 
 	@NonNull
-	Continent continent;
+	String code;
 
 	@NonNull
-	String code;
+	Continent continent;
 
 	@NonNull
 	String name;

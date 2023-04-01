@@ -1,13 +1,13 @@
 package uk.co.bluegecko.marine.wire.geo;
 
+import static org.assertj.core.api.Assertions.allOf;
+import static org.assertj.core.api.Assertions.assertThat;
+import static uk.co.bluegecko.marine.test.jassert.Conditions.extracted;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.co.bluegecko.marine.test.jassert.Conditions;
-
-import static org.assertj.core.api.Assertions.allOf;
-import static org.assertj.core.api.Assertions.assertThat;
 
 class ContinentTest {
 
@@ -24,8 +24,8 @@ class ContinentTest {
 	void testBuilder() {
 		assertThat(foo)
 				.has(allOf(
-						Conditions.extracted(Continent::code, "code", String::equals, "equals", "F"),
-						Conditions.extracted(Continent::name, "name", String::equals, "equals", "Foo")));
+						extracted(Continent::code, "code", String::equals, "equals", "F"),
+						extracted(Continent::name, "name", String::equals, "equals", "Foo")));
 	}
 
 	@Test

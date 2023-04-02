@@ -24,14 +24,15 @@ class ContinentTest {
 	void testBuilder() {
 		assertThat(foo)
 				.has(allOf(
-						extracted(Continent::code, "code", String::equals, "equals", "F"),
-						extracted(Continent::name, "name", String::equals, "equals", "Foo")));
+						extracted(Continent::code, "code", "F"),
+						extracted(Continent::name, "name", "Foo")));
 	}
 
 	@Test
 	void testSerialization() throws JsonProcessingException {
 		assertThat(objectMapper.writeValueAsString(foo))
-				.isEqualTo("{\"code\":\"F\",\"name\":\"Foo\"}");
+				.isEqualTo("""
+						{"code":"F","name":"Foo"}""");
 	}
 
 }

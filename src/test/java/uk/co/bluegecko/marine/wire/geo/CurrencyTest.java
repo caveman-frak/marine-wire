@@ -13,11 +13,11 @@ class CurrencyTest {
 	@Test
 	void testBuilder() {
 		assertThat(Currency.builder().code("GBP").name("Pound Sterling").numericCode(826).minor(2).symbol("£").build())
-				.has(anyOf(extracted(Currency::code, "code", String::equals, "equal to", "GBP"),
-						extracted(Currency::name, "code", String::equals, "equal to", "Pound Sterling"),
-						extracted(Currency::numericCode, "numeric code", Integer::equals, "equal to", 826),
-						extracted(Currency::minor, "minor", Integer::equals, "equal to", 2),
-						extracted(Currency::symbol, "symbol", String::equals, "equal to", "£")));
+				.has(anyOf(extracted(Currency::code, "code", "GBP"),
+						extracted(Currency::name, "code", "Pound Sterling"),
+						extracted(Currency::numericCode, "numeric code", 826),
+						extracted(Currency::minor, "minor", 2),
+						extracted(Currency::symbol, "symbol", "£")));
 	}
 
 	@Test
@@ -27,6 +27,22 @@ class CurrencyTest {
 				Currency.builder().code("GBP").name("Pound Sterling").numericCode(826).minor(2).symbol("£").build();
 		assertThat(objectMapper.writeValueAsString(ccy))
 				.isEqualTo(
-						"{\"code\":\"GBP\",\"name\":\"Pound Sterling\",\"numericCode\":826,\"minor\":2,\"symbol\":\"£\"}");
+						"""
+								{"code":"GBP","name":"Pound Sterling","numericCode":826,"minor":2,"symbol":"£"}""");
 	}
+
+	@Test
+	void testDeserialise() throws JsonProcessingException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		Currency ccy = objectMapper.readValue(
+				"""
+						{"code":"GBP","name":"Pound Sterling","numericCode":826,"minor":2,"symbol":"£"}""",
+				Currency.class);
+		assertThat(ccy)
+				.isEqualTo(
+						Currency.builder().code("GBP").name("Pound Sterling").numericCode(826).minor(2).symbol("£")
+								.build());
+
+	}
+
 }

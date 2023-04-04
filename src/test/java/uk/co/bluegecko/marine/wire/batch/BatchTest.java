@@ -71,9 +71,9 @@ class BatchTest {
 					.has(allOf(extracted(Batch::fileName, "filename", String::startsWith, "starts with", "test"),
 							extracted(Batch::fileName, "filename", String::endsWith, "ends with", ".txt"),
 							extracted(Batch::fileName, "path", Objects::nonNull, "not null"),
-							extracted(Batch::fileCreated, "file created", d -> time.isAfter(d), "is after"),
-							extracted(Batch::fileLastModified, "file modified", d -> time.isAfter(d), "is after"),
-							extracted(Batch::uploaded, "uploaded", d -> time.isEqual(d), "is same"),
+							extracted(Batch::fileCreated, "file created", time::isAfter, "is after"),
+							extracted(Batch::fileLastModified, "file modified", time::isAfter, "is after"),
+							extracted(Batch::uploaded, "uploaded", time::isEqual, "is same"),
 							extracted(Batch::info, "info", Objects::nonNull, "not null"),
 							extracted(Batch::logs, "info", Objects::isNull, "is null")
 					));

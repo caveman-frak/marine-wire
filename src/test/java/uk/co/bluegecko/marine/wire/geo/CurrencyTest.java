@@ -6,13 +6,27 @@ import static uk.co.bluegecko.marine.test.jassert.Conditions.extracted;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CurrencyTest {
 
+	private ObjectMapper objectMapper;
+	private Currency ccy;
+	private String json;
+
+	@BeforeEach
+	void setUp() {
+		objectMapper = JsonMapper.builder().build();
+		ccy = Currency.builder().code("GBP").name("Pound Sterling").numericCode(826).minor(2).symbol("£").build();
+		json = """
+				{"code":"GBP","name":"Pound Sterling","numericCode":826,"minor":2,"symbol":"£"}""";
+	}
+
 	@Test
 	void testBuilder() {
-		assertThat(Currency.builder().code("GBP").name("Pound Sterling").numericCode(826).minor(2).symbol("£").build())
+		assertThat(ccy)
 				.has(anyOf(extracted(Currency::code, "code", "GBP"),
 						extracted(Currency::name, "code", "Pound Sterling"),
 						extracted(Currency::numericCode, "numeric code", 826),
@@ -22,26 +36,14 @@ class CurrencyTest {
 
 	@Test
 	void testSerialise() throws JsonProcessingException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		Currency ccy =
-				Currency.builder().code("GBP").name("Pound Sterling").numericCode(826).minor(2).symbol("£").build();
 		assertThat(objectMapper.writeValueAsString(ccy))
-				.isEqualTo(
-						"""
-								{"code":"GBP","name":"Pound Sterling","numericCode":826,"minor":2,"symbol":"£"}""");
+				.isEqualTo(json);
 	}
 
 	@Test
 	void testDeserialise() throws JsonProcessingException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		Currency ccy = objectMapper.readValue(
-				"""
-						{"code":"GBP","name":"Pound Sterling","numericCode":826,"minor":2,"symbol":"£"}""",
-				Currency.class);
-		assertThat(ccy)
-				.isEqualTo(
-						Currency.builder().code("GBP").name("Pound Sterling").numericCode(826).minor(2).symbol("£")
-								.build());
+		assertThat(objectMapper.readValue(json, Currency.class))
+				.isEqualTo(ccy);
 
 	}
 

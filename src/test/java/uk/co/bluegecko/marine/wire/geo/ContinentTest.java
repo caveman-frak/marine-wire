@@ -6,6 +6,7 @@ import static uk.co.bluegecko.marine.test.jassert.Conditions.extracted;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +14,14 @@ class ContinentTest {
 
 	private ObjectMapper objectMapper;
 	private Continent foo;
+	private String json;
 
 	@BeforeEach
 	void setUp() {
-		objectMapper = new ObjectMapper();
+		objectMapper = JsonMapper.builder().build();
 		foo = Continent.builder().code("F").name("Foo").build();
+		json = """
+				{"code":"F","name":"Foo"}""";
 	}
 
 	@Test
@@ -31,8 +35,14 @@ class ContinentTest {
 	@Test
 	void testSerialization() throws JsonProcessingException {
 		assertThat(objectMapper.writeValueAsString(foo))
-				.isEqualTo("""
-						{"code":"F","name":"Foo"}""");
+				.isEqualTo(json);
+	}
+
+	@Test
+	void testDeserialization() throws JsonProcessingException {
+		assertThat(objectMapper.readValue(json, Continent.class))
+				.isInstanceOf(Continent.class)
+				.isEqualTo(foo);
 	}
 
 }

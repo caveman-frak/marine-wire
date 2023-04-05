@@ -19,25 +19,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.Builder;
+import lombok.NonNull;
 
 @Builder
 @JsonInclude(value = Include.NON_NULL)
 public record Batch(
-		BatchType type,
+		@NonNull BatchType type,
 		String fileName,
 		String path,
 		LocalDateTime fileCreated,
 		LocalDateTime fileLastModified,
-		String name,
-		LocalDateTime uploaded,
+		@NonNull String name,
+		@NonNull LocalDateTime uploaded,
 		@JsonTypeInfo(use = Id.NAME)
 		List<? extends Batchable> items,
 		@JsonIgnore
 		Map<String, Object> info,
 		List<Log> logs) {
 
-	public Batch(BatchType type, String fileName, String path, LocalDateTime fileCreated,
-			LocalDateTime fileLastModified, String name, LocalDateTime uploaded,
+	public Batch(@NonNull BatchType type, String fileName, String path, LocalDateTime fileCreated,
+			LocalDateTime fileLastModified, @NonNull String name, @NonNull LocalDateTime uploaded,
 			@JsonTypeInfo(use = Id.NAME) List<? extends Batchable> items,
 			Map<String, Object> info, List<Log> logs) {
 		this.type = type;

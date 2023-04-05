@@ -9,4 +9,6 @@ import uk.co.bluegecko.marine.wire.geo.Currency;
 @JsonSubTypes({@Type(Continent.class), @Type(Country.class), @Type(Currency.class)})
 public interface Batchable {
 
+	Integer line();
+
 }

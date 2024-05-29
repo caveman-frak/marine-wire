@@ -14,11 +14,11 @@ import java.util.Map;
 import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.co.bluegecko.marine.test.base.DatedTest;
+import uk.co.bluegecko.marine.test.base.MapperTest;
 import uk.co.bluegecko.marine.wire.geo.Continent;
 import uk.co.bluegecko.marine.wire.geo.Currency;
 
-class BatchTest extends DatedTest {
+class BatchTest extends MapperTest {
 
 	private Batch batch;
 	private String json;
@@ -38,7 +38,7 @@ class BatchTest extends DatedTest {
 				.logs(List.of())
 				.build();
 		json = """
-				{"type":"CONTINENT","name":"Country Batch 001","uploaded":"2000-06-15T12:30:00","items":[\
+				{"type":"CONTINENT","name":"Country Batch 001","uploaded":"2000-06-15T12:30:10","items":[\
 				{"@type":"Continent","line":1,"code":"EU","name":"Europe"},\
 				{"@type":"Currency","line":2,"code":"GBP","name":"Pound Sterling","numericCode":826,"minor":2,"symbol":"£"}],\
 				"logs":[],"extent":"[0 0,10 10]"}""";

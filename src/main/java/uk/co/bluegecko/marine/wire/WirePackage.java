@@ -1,6 +1,6 @@
 package uk.co.bluegecko.marine.wire;
 
-public class WirePackage {
+public final class WirePackage {
 
 	private WirePackage() {
 	}

@@ -4,6 +4,16 @@ plugins {
 
 dependencies {
     implementation(project(":shared"))
-    testImplementation(project(":test"))
-    implementation("org.locationtech.spatial4j:spatial4j:0.8")
+    testFixturesImplementation(project(":shared"))
+}
+
+testing {
+    suites {
+        withType<JvmTestSuite> {
+            dependencies {
+                implementation(project(":shared"))
+                implementation(testFixtures(project(":shared")))
+            }
+        }
+    }
 }

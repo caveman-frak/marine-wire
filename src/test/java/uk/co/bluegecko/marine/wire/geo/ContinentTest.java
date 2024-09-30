@@ -2,7 +2,7 @@ package uk.co.bluegecko.marine.wire.geo;
 
 import static org.assertj.core.api.Assertions.allOf;
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.co.bluegecko.marine.test.jassert.Conditions.extracted;
+import static uk.co.bluegecko.marine.shared.jassert.Conditions.extracted;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

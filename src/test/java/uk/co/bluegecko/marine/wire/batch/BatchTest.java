@@ -2,7 +2,7 @@ package uk.co.bluegecko.marine.wire.batch;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.condition.AllOf.allOf;
-import static uk.co.bluegecko.marine.shared.jassert.Conditions.extracted;
+import static uk.co.bluegecko.marine.shared.test.jassert.Conditions.extracted;
 import static uk.org.webcompere.modelassert.json.JsonAssertions.assertJson;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.xmlunit.assertj3.XmlAssert;
-import uk.co.bluegecko.marine.shared.base.MapperTest;
+import uk.co.bluegecko.marine.shared.test.base.MapperTest;
 import uk.co.bluegecko.marine.wire.geo.Continent;
 import uk.co.bluegecko.marine.wire.geo.Currency;
 

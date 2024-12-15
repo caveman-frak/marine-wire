@@ -3,7 +3,6 @@ package uk.co.bluegecko.marine.wire.batch;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -33,7 +32,8 @@ public record Batch(
 		@NonNull LocalDateTime uploaded,
 		@JsonTypeInfo(use = Id.NAME)
 		List<? extends Batchable> items,
-		@JsonIgnore
+		@JsonAnySetter
+		@JsonAnyGetter
 		Map<String, Object> info,
 		List<Log> logs) {
 
@@ -51,16 +51,6 @@ public record Batch(
 		this.items = items;
 		this.info = info == null ? new HashMap<>() : info;
 		this.logs = logs;
-	}
-
-	@JsonAnySetter
-	public void addInfo(String key, Object value) {
-		info.put(key, value);
-	}
-
-	@JsonAnyGetter
-	public Map<String, Object> getInfo() {
-		return info;
 	}
 
 	public static class BatchBuilder {

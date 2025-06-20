@@ -59,10 +59,8 @@ public record Batch(
 			BasicFileAttributes attributes = Files.readAttributes(file, BasicFileAttributes.class);
 			fileName = file.getFileName().toString();
 			path = file.getParent().toAbsolutePath().toString();
-			fileCreated = LocalDateTime.ofInstant(attributes
-					.creationTime().toInstant(), ZoneOffset.UTC);
-			fileLastModified = LocalDateTime.ofInstant(attributes
-					.lastModifiedTime().toInstant(), ZoneOffset.UTC);
+			fileCreated = LocalDateTime.ofInstant(attributes.creationTime().toInstant(), ZoneOffset.UTC);
+			fileLastModified = LocalDateTime.ofInstant(attributes.lastModifiedTime().toInstant(), ZoneOffset.UTC);
 			return this;
 		}
 

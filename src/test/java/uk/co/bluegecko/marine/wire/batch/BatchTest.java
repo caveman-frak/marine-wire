@@ -54,7 +54,7 @@ class BatchTest extends MapperTest {
 					{"type":"CONTINENT","name":"Country Batch 001","uploaded":"2000-06-15T12:30:10","items":[\
 					{"@type":"Continent","line":1,"code":"EU","name":"Europe"},\
 					{"@type":"Currency","line":2,"code":"GBP","name":"Pound Sterling","numericCode":826,"minor":2,"symbol":"£"}],\
-					"logs":[],"extent":"[0 0,10 10]"}""";
+					"extent":"[0 0,10 10]","logs":[]}""";
 		}
 
 		@Nested
@@ -182,8 +182,8 @@ class BatchTest extends MapperTest {
 					<Batch><type>CONTINENT</type><name>Country Batch 001</name><uploaded>2000-06-15T12:30:10</uploaded><items>\
 					<items _type="Continent"><line>1</line><code>EU</code><name>Europe</name></items>\
 					<items _type="Currency"><line>2</line><code>GBP</code><name>Pound Sterling</name>\
-					<numericCode>826</numericCode><minor>2</minor><symbol>£</symbol></items></items><logs/>\
-					<extent>[0 0,10 10]</extent></Batch>""";
+					<numericCode>826</numericCode><minor>2</minor><symbol>£</symbol></items></items>\
+					<extent>[0 0,10 10]</extent><logs/></Batch>""";
 		}
 
 		@Nested
